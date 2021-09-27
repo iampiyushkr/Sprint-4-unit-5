@@ -1,5 +1,5 @@
 const express=require("express")
-const connect =require("./src/db");
+const connect =require("./src/config/db");
 const app=express();
 app.use(express.json());
 
