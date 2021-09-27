@@ -1,11 +1,19 @@
 const express=require("express");
-const { model } = require("mongoose");
-const router=express.Router()
+
+
 const User=require("../model/user.model")
+const upload=require("../middlewares/file_upload")
+const router=express.Router()
 
+router.post("/single",upload.single("productImages"),async (req,res)=>{
+    const user=await User.create({
+        name:req.body.name,
+        email:req.body.email,
+        password:req.body.password,
+        role:req.body.role,
+        photo_url:req.file.path
 
-router.post("",async (req,res)=>{
-    const user=await User.create(req.body);
+    });
     return res.status(201).json({user});
 })
 
